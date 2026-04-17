@@ -1,0 +1,8 @@
+import type { MiddlewareHandler } from 'hono'
+
+export const securityHeadersMiddleware: MiddlewareHandler = async (c, next) => {
+  await next()
+  c.header('X-Frame-Options', 'DENY')
+  c.header('X-Content-Type-Options', 'nosniff')
+  c.header('Referrer-Policy', 'same-origin')
+}
